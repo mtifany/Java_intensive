@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+    http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="preProcessorBeanUp" class="preprocessor.PreProcessorToUpperImpl">
+    </bean>
+    <bean id="preProcessorBeanLow" class="preprocessor.PreProcessorToLowerImpl">
+    </bean>
+
+
+    <bean id="renderBeanErrUp" class="renderer.RendererErrImpl">
+        <constructor-arg ref="preProcessorBeanUp"/>
+    </bean>
+    <bean id="renderBeanStandUp" class="renderer.RendererStandartImpl">
+        <constructor-arg ref="preProcessorBeanUp"/>
+    </bean>
+    <bean id="renderBeanErrLow" class="renderer.RendererErrImpl">
+        <constructor-arg ref="preProcessorBeanLow"/>
+    </bean>
+    <bean id="renderBeanStandLow" class="renderer.RendererStandartImpl">
+        <constructor-arg ref="preProcessorBeanLow"/>
+    </bean>
+
+    <bean id="printerWIthDateTimeErrUp" class="printer.PrinterWithDateTimeImpl">
+        <constructor-arg ref="renderBeanErrUp"/>
+    </bean>
+    <bean id="printerWithPrefixErrUp" class="printer.PrinterWithPrefixImpl">
+        <constructor-arg ref="renderBeanErrUp"/>
+        <property name="prefix" value="PREFIX "/>
+    </bean>
+    <bean id="printerWIthDateTimeStandUp" class="printer.PrinterWithDateTimeImpl">
+        <constructor-arg ref="renderBeanStandUp"/>
+    </bean>
+    <bean id="printerWithPrefixStandUp" class="printer.PrinterWithPrefixImpl">
+        <constructor-arg ref="renderBeanStandUp"/>
+        <property name="prefix" value="PREFIX "/>
+    </bean>
+
+    <bean id="printerWIthDateTimeErrLow" class="printer.PrinterWithDateTimeImpl">
+        <constructor-arg ref="renderBeanErrLow"/>
+    </bean>
+    <bean id="printerWithPrefixErrLow" class="printer.PrinterWithPrefixImpl">
+        <constructor-arg ref="renderBeanErrLow"/>
+        <property name="prefix" value="PREFIX "/>
+    </bean>
+    <bean id="printerWIthDateTimeStandLow" class="printer.PrinterWithDateTimeImpl">
+        <constructor-arg ref="renderBeanStandLow"/>
+    </bean>
+    <bean id="printerWithPrefixStandLow" class="printer.PrinterWithPrefixImpl">
+        <constructor-arg ref="renderBeanStandLow"/>
+        <property name="prefix" value="PREFIX "/>
+    </bean>
+
+
+
+</beans>
